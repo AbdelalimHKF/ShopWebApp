@@ -1,2 +1,8 @@
 <h2> Welcome to {{ title }}!</h2>
-<app-nearby-shops></app-nearby-shops>
+<!--<app-nearby-shops></app-nearby-shops>-->
+<h1>Angular Router</h1>
+  <nav>
+    <a routerLink="nearbyshops" routerLinkActive="active">Nearby Shops</a>
+    <a routerLink="preferredshops" routerLinkActive="active">Preferred Shops</a>
+  </nav>
+  <router-outlet></router-outlet>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { ShopComponent } from './shop/shop.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
