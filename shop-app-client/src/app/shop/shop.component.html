@@ -1,3 +1,10 @@
-<p>
-  shop works!
-</p>
+<div *ngIf="nbshop">
+  <div>name : {{nbshop.content.name}}</div>
+  <div>
+      <img src="{{nbshop.content.picture}}">
+  </div>
+  <div>
+    <button>like</button>
+    <button>dislike</button>
+  </div>
+</div>
