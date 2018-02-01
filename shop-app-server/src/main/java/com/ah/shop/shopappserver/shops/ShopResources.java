@@ -1,5 +1,6 @@
 package com.ah.shop.shopappserver.shops;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,26 @@ public class ShopResources {
 		 
 	 }
 	
-	@RequestMapping("/nearbyshops")
+	@RequestMapping("/nearbyhops")
 	 public GeoResults<Shop> getNearShops(){
 		
 	
 		Point p = new Point(-6.81134,33.95564);
 		Distance d = new Distance(0.5, Metrics.KILOMETERS);
-		 
 		return shopRepository.findByLocationNear(p, d);
 		 
 	 }
+	
+	@RequestMapping("/preferredShops")
+	 public List<Shop> getPreferredShops() {
+		 
+		List<Shop> preferredShops = new ArrayList<Shop>();
+		
+		preferredShops.add(shopRepository.findByName("Gushkool"));
+		preferredShops.add(shopRepository.findByName("Datagene"));
+		
+		
+		return preferredShops;
+	 }
+	 
 }

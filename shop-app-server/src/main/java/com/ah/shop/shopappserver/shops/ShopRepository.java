@@ -9,7 +9,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 
 
+
+
 public interface ShopRepository  extends MongoRepository<Shop, ObjectId>{
   
-	public GeoResults<Shop>  findByLocationNear(Point p, Distance d); 
+	public GeoResults<Shop>  findByLocationNear(Point p, Distance d);
+	public Shop findByName(String name);
 }

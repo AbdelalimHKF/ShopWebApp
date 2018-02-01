@@ -7,13 +7,15 @@ import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { ShopComponent } from './shop/shop.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
+import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NearbyShopsComponent,
-    ShopComponent
+    ShopComponent,
+    PreferredShopsComponent
   ],
   imports: [
     BrowserModule,
