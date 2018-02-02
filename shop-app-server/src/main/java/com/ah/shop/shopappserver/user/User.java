@@ -1,5 +1,7 @@
 package com.ah.shop.shopappserver.user;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,18 +15,28 @@ public class User {
     private ObjectId id ; 
     private String userName;
     private String email ;
-    private Shop[] preferredShops;
+    private String passwd ;
+    public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	private List<Shop> preferredShops;
     
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String userName, String email, Shop[] preferredShops) {
+	public User( String userName, String email, String passwd,  List<Shop> preferredShops) {
 		super();
 	
 		this.userName = userName;
 		this.email = email;
+		this.passwd = passwd;
 		this.preferredShops = preferredShops;
 	}
 
@@ -52,11 +64,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Shop[] getPreferredShops() {
+	public List<Shop> getPreferredShops() {
 		return preferredShops;
 	}
 
-	public void setPreferredShops(Shop[] preferredShops) {
+	public void setPreferredShops(List<Shop> preferredShops) {
 		this.preferredShops = preferredShops;
 	}
 	

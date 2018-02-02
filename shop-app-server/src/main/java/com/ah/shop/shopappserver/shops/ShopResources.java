@@ -36,7 +36,7 @@ public class ShopResources {
 		 
 	 }
 	
-	@RequestMapping("/preferredShops")
+	@RequestMapping("/preferredShopsOld")
 	 public List<Shop> getPreferredShops() {
 		 
 		List<Shop> preferredShops = new ArrayList<Shop>();

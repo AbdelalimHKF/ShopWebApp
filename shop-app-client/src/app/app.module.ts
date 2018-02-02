@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
 import { PreferredShopComponent } from './preferred-shop/preferred-shop.component';
+import { UserService } from './user.service';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 
 @NgModule({
@@ -17,14 +19,15 @@ import { PreferredShopComponent } from './preferred-shop/preferred-shop.componen
     NearbyShopsComponent,
     ShopComponent,
     PreferredShopsComponent,
-    PreferredShopComponent
+    PreferredShopComponent,
+    AuthentificationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
