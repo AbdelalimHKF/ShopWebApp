@@ -8,6 +8,7 @@ import { ShopComponent } from './shop/shop.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
+import { PreferredShopComponent } from './preferred-shop/preferred-shop.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PreferredShopsComponent } from './preferred-shops/preferred-shops.compo
     AppComponent,
     NearbyShopsComponent,
     ShopComponent,
-    PreferredShopsComponent
+    PreferredShopsComponent,
+    PreferredShopComponent
   ],
   imports: [
     BrowserModule,
