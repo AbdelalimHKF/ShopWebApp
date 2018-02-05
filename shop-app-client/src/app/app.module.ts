@@ -11,6 +11,7 @@ import { PreferredShopsComponent } from './preferred-shops/preferred-shops.compo
 import { PreferredShopComponent } from './preferred-shop/preferred-shop.component';
 import { UserService } from './user.service';
 import { AuthentificationComponent } from './authentification/authentification.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AuthentificationComponent } from './authentification/authentification.c
     ShopComponent,
     PreferredShopsComponent,
     PreferredShopComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

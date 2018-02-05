@@ -10,8 +10,13 @@ export class AuthentificationComponent implements OnInit {
 
   constructor(private userService : UserService) { }
 
-  login() : void {
-    this.userService.login();
+  message : String;
+
+  login(email : String, passWd : String)  : void {
+    if( this.userService.login(email,passWd)==null){
+     this.message = this.userService.message;
+    }
+   
   }
   ngOnInit() {
   }

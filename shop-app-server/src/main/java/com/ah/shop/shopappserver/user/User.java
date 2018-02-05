@@ -1,5 +1,6 @@
 package com.ah.shop.shopappserver.user;
 
+
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -35,6 +36,15 @@ public class User {
 		super();
 	
 		this.userName = userName;
+		this.email = email;
+		this.passwd = passwd;
+		this.preferredShops = preferredShops;
+	}
+
+	
+
+	public User(String email, String passwd, List<Shop> preferredShops) {
+		super();
 		this.email = email;
 		this.passwd = passwd;
 		this.preferredShops = preferredShops;

@@ -1,0 +1,17 @@
+<div> 
+    <p> registration works! </p>
+    <div>
+        <label>E-mail :</label>
+        <input #email >
+    </div>
+    <div>
+        <label>Password :</label>
+        <input #passWd (keyup)=onKey1(passWd.value)>
+    </div>
+    <div>
+        <label>re-enter the Password :</label>
+        <input #box (keyup)="onKey2(box.value)">
+    </div>
+  <button (click)="register(email.value, passWd.value)">Sing Up</button>
+  <p>{{match_pw_message}}</p>
+</div>
