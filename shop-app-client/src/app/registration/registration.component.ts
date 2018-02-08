@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
   register(email : String, passWd : String) {
     this.form.email=email; this.form.passWd=passWd;
-    this.userService.postForm(this.form);   
+    this.userService.registerService(this.form);   
   } 
 
   

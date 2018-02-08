@@ -65,46 +65,20 @@ public class UserRecources {
 					return null;
 				}
 		}
-		
 		return null;
-			
 		}
 	
 	
-	
-	@RequestMapping("/register/{userName}:{email}:{passWd}")
-	public User addUser(@PathVariable("userName") String userName,
-							@PathVariable("passWd")String passWd,
-							@PathVariable("email")String email){
-		
-		User user = new User(userName, email, passWd, new ArrayList<Shop>());
-		user = userRepository.save(user);
-				
-		return user;
-		}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/register")
-	public User addUser1(@RequestBody Form form){
+	public User addUser(@RequestBody Form form){
 		
-		System.out.println("email : "+form.email );
-		System.out.println("passwprd : "+form.passWd );
 		User user = new User(form.getEmail(), form.getPassWd(), new ArrayList<Shop>());
-		
 		user = userRepository.save(user);
-				
+		
 		return user;
 		}
 
-	@RequestMapping(method=RequestMethod.POST, value="/form")
-	public Form form(@RequestBody Form form){
-		
-		System.out.println("email : "+form.email );
-		System.out.println("passwprd : "+form.passWd );
-		
-		new Form(form.email,form.passWd);
-				
-		return new Form(form.email,form.passWd);
-		}
 	
 
 }

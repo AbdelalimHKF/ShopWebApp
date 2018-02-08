@@ -36,11 +36,15 @@ export class UserService {
   }
 
   registerService(form : Form) : void {
-      this.http.post<Form>("http://localhost:8080/form", form, httpOptions)
-    .pipe(
-      catchError(this.handleError('sendform', form))
-    )
+    console.log("register service called");
     console.log(form);
+      this.http.post<User>("http://localhost:8080/register", form, httpOptions)
+      .map(data => data).subscribe(data => {
+        if(data){
+          console.log("added User",data);
+          this.router.navigate(['welcome']);
+        }
+      });
     
   }
 
