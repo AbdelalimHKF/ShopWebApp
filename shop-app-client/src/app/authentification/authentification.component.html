@@ -1,15 +1,16 @@
-
-<div> 
-    <p> authentification works! </p>
-    <div>
-        <label>E-mail :</label>
-        <input #email >
+<div>
+    <div > 
+        <p> authentification works! </p>
+        <div>
+            <label>E-mail :</label>
+            <input #email >
+        </div>
+        <div>
+            <label>Pass Word :</label>
+            <input #passWd>
+        </div>
+        <div>{{message}}</div>
+        
+    <button (click)="login(email.value, passWd.value)">Loging</button>
     </div>
-    <div>
-        <label>Pass Word :</label>
-        <input #passWd>
-    </div>
-    <div>{{message}}</div>
-    
-  <button (click)="login(email.value, passWd.value)">Loging</button>
 </div>

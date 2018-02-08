@@ -3,10 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule,Routes} from '@angular/router';
 import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const appRoutes: Routes =[
-  { path:'nearbyshops', component: NearbyShopsComponent },
-  {path:'preferredshops', component :PreferredShopsComponent}
+  { path:'welcome', component: WelcomeComponent },
+  { path:'dashboard', component: DashboardComponent },
+  { path : '' ,redirectTo : '/welcome' , pathMatch: 'full'}
 ];
 
 

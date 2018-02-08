@@ -1,0 +1,18 @@
+<p>
+  welcome works!
+</p>
+<div>
+   <div>
+    <button >Sign In</button>
+    <button (click)="signUp()">Sign Up</button>
+   </div>
+  <div *ngIf ="authFormShowed">
+    <app-authentification></app-authentification>
+  </div>
+  <div>
+
+  </div>
+  <div *ngIf ="sigupClicked">
+    <app-registration></app-registration>
+  </div>
+</div>

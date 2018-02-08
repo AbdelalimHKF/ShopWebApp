@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   passwd :String;
   match_pw_message = "";
-  form : Form = new Form();
+  form : Form = new Form("bob@email","pass");
 
   onKey1(passwd : String ){
     this.passwd = passwd;
@@ -39,8 +39,10 @@ export class RegistrationComponent implements OnInit {
 
   register(email : String, passWd : String) {
     this.form.email=email; this.form.passWd=passWd;
-    this.userService.registerService(this.form);   
+    this.userService.postForm(this.form);   
   } 
+
+  
  
   ngOnInit() {
   }

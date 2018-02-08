@@ -12,6 +12,8 @@ import { PreferredShopComponent } from './preferred-shop/preferred-shop.componen
 import { UserService } from './user.service';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { RegistrationComponent } from './registration/registration.component';
     PreferredShopsComponent,
     PreferredShopComponent,
     AuthentificationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DashboardComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
