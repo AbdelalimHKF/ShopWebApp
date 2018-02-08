@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Tree } from '@angular/router/src/utils/tree';
+import { Form } from '../form';
+import { log } from 'util';
+import { User } from '../user';
 
 @Component({
   selector: 'app-authentification',
@@ -10,20 +13,21 @@ import { Tree } from '@angular/router/src/utils/tree';
 export class AuthentificationComponent implements OnInit {
 
   constructor(private userService : UserService) { }
-  authFormShowd : boolean = true;
-  sigupClicked : boolean = false;
+ 
   message : String;
+  form : Form = new Form("","");
 
-  login(email : String, passWd : String)  : void {
-    if( this.userService.login(email,passWd)==null){
-     this.message = this.userService.message;
+  login(email : String, passWd : String) {
+    this.form.email=email; this.form.passWd=passWd;
+    this.userService.login(this.form)
+    
+    if(this.userService.isAuthenticated==false){
+      this.message = "uncorrect email or password";
     }
-  }
+    
+  } 
 
-  signUp(){
-    this.sigupClicked=true;
-    this.authFormShowd = false;
-  }
+ 
   ngOnInit() {
   }
 

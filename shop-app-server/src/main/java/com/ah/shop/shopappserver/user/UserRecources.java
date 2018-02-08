@@ -50,19 +50,27 @@ public class UserRecources {
 		}
 	
 	
-	@RequestMapping("/auth/{email}:{passWd}")
-	public User getAuthUser(@PathVariable("email") String email,
-							@PathVariable("passWd")String passWd){
+	
+	@RequestMapping(method=RequestMethod.POST, value="/authentification")
+	public User getAuthUser(@RequestBody Form form){
 		
-		User user = userRepository.findByEmail(email);
+		System.out.println("email : "+form.email );
+		System.out.println("passwprd : "+form.passWd );
 		
-		if (user.getPasswd().hashCode()==passWd.hashCode()) {
-			return user;
-			}else {
-				return null;
-			}
+		User user = userRepository.findByEmail(form.email);
+		if (user != null) {
+			if (user.getPasswd().hashCode()==form.passWd.hashCode()) {
+				return user;
+				}else {
+					return null;
+				}
+		}
+		
+		return null;
 			
 		}
+	
+	
 	
 	@RequestMapping("/register/{userName}:{email}:{passWd}")
 	public User addUser(@PathVariable("userName") String userName,

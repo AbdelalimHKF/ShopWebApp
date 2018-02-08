@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Shop } from './shop';
 import { Observable } from 'rxjs/Observable';
 import { Form } from './form';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,30 +19,16 @@ const httpOptions = {
 export class UserService {
   
 
-  constructor(private http : HttpClient) { }
-  uri ="http://localhost:8080/auth/";
+  constructor(private http : HttpClient,private router : Router) { }
+  uri ="http://localhost:8080/authentification/";
   regitUri ="http://localhost:8080/register/";
   url :any;
   authenticatedUser : User;
   message : String;
-
-  login(email : String, passWd : String) : void {
-    this.url = this.uri+email+":"+passWd ;
-    console.log(this.url);
-    this.http.get<User>(this.url).map(data =>data).subscribe(data => {
-      console.log("data : ",data);
-      if(data==null){
-        this.message="uncorrect email or password";
-        console.log("uncorrect email or password");
-      }else{
-        this.authenticatedUser = data;
-      }
-      
-    });
-  }
+  resForm : any;
+  isAuthenticated : boolean = false;
 
   getUPreferredShops(): Shop[] {
-    
      if (this.authenticatedUser != null) {
       console.log(this.authenticatedUser.preferredShops)
       return this.authenticatedUser.preferredShops;
@@ -47,9 +36,64 @@ export class UserService {
   }
 
   registerService(form : Form) : void {
-    
-    this.http.post(this.regitUri , form , httpOptions).pipe();
+      this.http.post<Form>("http://localhost:8080/form", form, httpOptions)
+    .pipe(
+      catchError(this.handleError('sendform', form))
+    )
+    console.log(form);
     
   }
+
+  postForm(form : any){
+    console.log("postForm called");
+    console.log(form);
+    return this.http.post("http://localhost:8080/form",form).map(data =>data)
+    .subscribe(data  =>  {
+      this.resForm = data;
+      console.log(this.resForm );
+    });
+  }
+
+  login(form : any) : any {
+    console.log("postFormLogin called");
+    console.log(form);
+    return this.http.post<User>("http://localhost:8080/authentification",form).map(data =>data)
+    .subscribe(data  =>  {
+      console.log("data : ",data);
+      if(data==null){
+        this.isAuthenticated=false;
+        this.message="uncorrect email or password";
+        console.log("from service", this.message);
+      }else{
+        this.isAuthenticated=true;
+        this.authenticatedUser = data;
+        this.router.navigate(['dashboard']);
+      }
+      
+    });
+  }
+
+
+  
+
+  /**
+ * Handle Http operation that failed.
+ * Let the app continue.
+ * @param operation - name of the operation that failed
+ * @param result - optional value to return as the observable result
+ */
+private handleError<T> (operation = 'operation', result?: T) {
+  return (error: any): Observable<T> => {
+
+    // TODO: send the error to remote logging infrastructure
+    console.error(error); // log to console instead
+
+    // TODO: better job of transforming error for user consumption
+    console.log(`${operation} failed: ${error.message}`);
+
+    // Let the app keep running by returning an empty result.
+    return of(result as T);
+  };
+}
 }
 
