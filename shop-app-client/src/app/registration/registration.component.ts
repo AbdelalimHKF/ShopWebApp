@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   passwd :String;
   match_pw_message = "";
-  form : Form = new Form("bob@email","pass");
+  form : Form = new Form("","");
 
   onKey1(passwd : String ){
     this.passwd = passwd;
