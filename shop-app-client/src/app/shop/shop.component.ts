@@ -29,19 +29,18 @@ export class ShopComponent implements OnInit {
 
   }
   dislike(shop : Shop){
-    this.preferredShops=this.userService.authenticatedUser.preferredShops;
+    console.log("index lalal: ", this.userService.authenticatedUser.preferredShops.
+      findIndex(obj => obj.id.timestamp === shop.id.timestamp));
+
     this.shopService.dislike(this.userService.authenticatedUser);
   }
 
   i : number;
   isExist(shop : Shop) :boolean{
-    for(this.i=0;this.i<this.preferredShops.length;this.i++){
-      console.log(this.preferredShops[this.i]);
-      if(this.preferredShops.length==0) return false;
-      if(this.preferredShops[this.i].id.timestamp==shop.id.timestamp 
-      && this.preferredShops[this.i].id.machineIdentifier==shop.id.machineIdentifier){
+    if(this.preferredShops
+      .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
+            && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
         return true;
-      }
     }
     return false;
   }
