@@ -29,21 +29,22 @@ export class ShopComponent implements OnInit {
 
   }
   dislike(shop : Shop){
-    console.log("index lalal: ", this.userService.authenticatedUser.preferredShops.
-      findIndex(obj => obj.id.timestamp === shop.id.timestamp));
-
+    this.shopService.deleteShop(shop);
     this.shopService.dislike(this.userService.authenticatedUser);
+    console.log("after remove",
+      this.userService.authenticatedUser.preferredShops);
   }
 
   i : number;
   isExist(shop : Shop) :boolean{
-    if(this.preferredShops
+    if(this.userService.authenticatedUser.preferredShops
       .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
             && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
         return true;
     }
     return false;
   }
+
 
 
   ngOnInit() {
