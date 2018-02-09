@@ -2,6 +2,7 @@ package com.ah.shop.shopappserver.user;
 
 import java.util.ArrayList;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +40,12 @@ public class UserRecources {
 		
 		User user = new User(form.getEmail(), form.getPassWd(), new ArrayList<Shop>());
 		//user = userRepository.save(user);
+		return user;
+		}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/updateUser")
+	public User apdateUser(@RequestBody User user){
+		user = userRepository.save(user);
 		return user;
 		}
 

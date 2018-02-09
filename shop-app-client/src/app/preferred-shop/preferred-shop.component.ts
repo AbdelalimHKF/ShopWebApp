@@ -10,7 +10,12 @@ export class PreferredShopComponent implements OnInit {
 
   constructor() { }
 
+
   @Input() preferredShop : Shop;
+
+  remove(shop : Shop){
+    console.log("Removed shop",shop);
+  }
   ngOnInit() {
   }
 

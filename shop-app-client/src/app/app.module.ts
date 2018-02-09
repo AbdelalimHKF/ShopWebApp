@@ -14,6 +14,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ShopService } from './shop.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, ShopService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
