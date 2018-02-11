@@ -14,10 +14,10 @@ export class PreferredShopComponent implements OnInit {
               private userService : UserService) { }
 
 
-  @Input() preferredShop : Shop;
+  @Input() preferredShop : Shop; 
 
   remove(shop : Shop){
-    this.shopService.deleteShop(shop);
+    this.shopService.deleteShop(shop,this.userService.authenticatedUser.preferredShops);
     this.shopService.remove(this.userService.authenticatedUser);
     console.log("Removed shop",shop);
   }

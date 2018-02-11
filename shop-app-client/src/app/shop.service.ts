@@ -7,6 +7,7 @@ import { UserService } from './user.service';
 @Injectable()
 export class ShopService {
   uri = "http://localhost:8080/updateUser";
+  nbShopsExcludeLikedOnes : Shop[]=[];
 
   constructor(private http : HttpClient,private userService : UserService ) { }
   
@@ -28,7 +29,17 @@ export class ShopService {
   }
 
   index : number;
-  deleteShop(shop : Shop){
+
+  deleteShop(shop : Shop , shops : Shop[]){
+    console.log("deleteShop Called : preferredShops",shops);
+    this.index = shops
+    .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
+      && obj.id.processIdentifier === shop.id.processIdentifier);
+      shops.splice(this.index, 1);
+      console.log("shop deleted",shops);
+  }
+
+  deleteShopOld(shop : Shop ){
     console.log("deleteShop Called : preferredShops",
     this.userService.authenticatedUser.preferredShops);
     this.index = this.userService.authenticatedUser.preferredShops
@@ -48,5 +59,6 @@ export class ShopService {
     }
     return false;
   }
+  
 
 }

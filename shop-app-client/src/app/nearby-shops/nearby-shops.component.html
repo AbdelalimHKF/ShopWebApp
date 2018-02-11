@@ -3,7 +3,7 @@
   <div>distance: {{nearByshops.averageDistance.value}} </div>
   <div>
     <ul>
-        <li *ngFor ="let nbshop of listNbShop">
+        <li *ngFor ="let nbshop of shopService.nbShopsExcludeLikedOnes">
             
            <app-shop [nbshop]="nbshop"></app-shop> 
          

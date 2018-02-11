@@ -21,6 +21,8 @@ export class ShopComponent implements OnInit {
 
 
   like(shop : Shop){
+    //delete liked shop from nearbayshops
+    this.shopService.deleteShop(shop,this.shopService.nbShopsExcludeLikedOnes);
     console.log("shop to be likeed ",shop);
     //check if shop doesn't exist befor push
     if(this.isExist(shop)){
@@ -31,7 +33,7 @@ export class ShopComponent implements OnInit {
 
   }
   dislike(shop : Shop){
-    this.shopService.deleteShop(shop);
+    this.shopService.deleteShop(shop,this.userService.authenticatedUser.preferredShops);
     this.shopService.dislike(this.userService.authenticatedUser);
     console.log("after remove",
       this.userService.authenticatedUser.preferredShops);
