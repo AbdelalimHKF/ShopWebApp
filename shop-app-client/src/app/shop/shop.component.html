@@ -1,10 +1,10 @@
 <div *ngIf="nbshop">
-  <div>name : {{nbshop.content.name}}</div>
+  <div>name : {{nbshop.name}}</div>
   <div>
-      <img src="{{nbshop.content.picture}}">
+      <img src="{{nbshop.picture}}">
   </div>
   <div>
-    <button (click)="like(nbshop.content)">like</button>
-    <button (click)="dislike(nbshop.content)">dislike</button>
+    <button (click)="like(nbshop)">like</button>
+    <button (click)="dislike(nbshop)">dislike</button>
   </div>
 </div>

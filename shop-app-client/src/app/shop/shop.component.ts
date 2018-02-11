@@ -14,12 +14,14 @@ export class ShopComponent implements OnInit {
   constructor(private shopService : ShopService,
               private userService : UserService) { }
   
-  @Input() nbshop : Content;
+  //@Input() nbshop : Content;
+  @Input() nbshop :Shop;
 
   preferredShops : Shop[]=this.userService.authenticatedUser.preferredShops;
 
 
   like(shop : Shop){
+    console.log("shop to be likeed ",shop);
     //check if shop doesn't exist befor push
     if(this.isExist(shop)){
     }else{
@@ -37,12 +39,17 @@ export class ShopComponent implements OnInit {
 
   i : number;
   isExist(shop : Shop) :boolean{
-    if(this.userService.authenticatedUser.preferredShops
-      .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
-            && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
-        return true;
+    console.log("length ",this.userService.authenticatedUser.preferredShops.length);
+    if(this.userService.authenticatedUser.preferredShops.length > 0){
+      if(this.userService.authenticatedUser.preferredShops
+        .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
+              && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
+          return true;
+      }
+      return false;
     }
     return false;
+    
   }
 
 

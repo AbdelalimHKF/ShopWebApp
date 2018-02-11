@@ -39,7 +39,7 @@ public class UserRecources {
 	public User addUser(@RequestBody Form form){
 		
 		User user = new User(form.getEmail(), form.getPassWd(), new ArrayList<Shop>());
-		//user = userRepository.save(user);
+		user = userRepository.save(user);
 		return user;
 		}
 	

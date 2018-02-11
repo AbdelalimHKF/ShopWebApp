@@ -31,7 +31,7 @@ public class ShopResources {
 		
 	
 		Point p = new Point(-6.81134,33.95564);
-		Distance d = new Distance(0.5, Metrics.KILOMETERS);
+		Distance d = new Distance(0.8, Metrics.KILOMETERS);
 		return shopRepository.findByLocationNear(p, d);
 		 
 	 }

@@ -3,9 +3,14 @@
   <div>distance: {{nearByshops.averageDistance.value}} </div>
   <div>
     <ul>
-      <li *ngFor ="let nbshop of nbshops">
-        <!--  {shop componemt} -->
+        <li *ngFor ="let nbshop of listNbShop">
+            
+           <app-shop [nbshop]="nbshop"></app-shop> 
+         
+      <!--<li *ngFor ="let nbshop of nbshops">
+         {shop componemt} 
         <app-shop [nbshop]="nbshop"></app-shop> 
+      </li> -->
         <div></div>
     </ul>
   </div>

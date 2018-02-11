@@ -39,4 +39,14 @@ export class ShopService {
       this.userService.authenticatedUser.preferredShops);
   }
 
+  i : number;
+  isExist(shop : Shop) :boolean{
+    if(this.userService.authenticatedUser.preferredShops
+      .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
+            && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
+        return true;
+    }
+    return false;
+  }
+
 }
