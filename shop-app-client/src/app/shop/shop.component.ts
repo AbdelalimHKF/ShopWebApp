@@ -45,7 +45,8 @@ export class ShopComponent implements OnInit {
     if(this.userService.authenticatedUser.preferredShops.length > 0){
       if(this.userService.authenticatedUser.preferredShops
         .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
-              && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
+              && obj.id.processIdentifier === shop.id.processIdentifier
+              && obj.name === shop.name)>=0){
           return true;
       }
       return false;

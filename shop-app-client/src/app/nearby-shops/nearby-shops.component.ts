@@ -48,7 +48,8 @@ export class NearbyShopsComponent implements OnInit {
   myfindIndex(shop : Shop , listShops : Shop[]) : number {
     return listShops
       .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
-            && obj.id.processIdentifier === shop.id.processIdentifier);
+            && obj.id.processIdentifier === shop.id.processIdentifier
+          && obj.name === shop.name);
   }
 
   ngOnInit() {
