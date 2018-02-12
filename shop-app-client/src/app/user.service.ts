@@ -28,7 +28,7 @@ export class UserService {
   resForm : any;
   isAuthenticated : boolean = false;
 
-  getUPreferredShops(): Shop[] {
+  getPreferredShops(): Shop[] {
      if (this.authenticatedUser != null) {
       console.log(this.authenticatedUser.preferredShops)
       return this.authenticatedUser.preferredShops;

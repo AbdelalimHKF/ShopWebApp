@@ -39,17 +39,6 @@ export class ShopService {
       console.log("shop deleted",shops);
   }
 
-  deleteShopOld(shop : Shop ){
-    console.log("deleteShop Called : preferredShops",
-    this.userService.authenticatedUser.preferredShops);
-    this.index = this.userService.authenticatedUser.preferredShops
-    .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
-      && obj.id.processIdentifier === shop.id.processIdentifier);
-      this.userService.authenticatedUser.preferredShops.splice(this.index, 1);
-      console.log("shop deleted",
-      this.userService.authenticatedUser.preferredShops);
-  }
-
   i : number;
   isExist(shop : Shop) :boolean{
     if(this.userService.authenticatedUser.preferredShops

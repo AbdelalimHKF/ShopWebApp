@@ -50,12 +50,9 @@ export class ShopComponent implements OnInit {
       }
       return false;
     }
-    return false;
-    
+    return false; 
   }
-
-
-
+  
   ngOnInit() {
   }
 

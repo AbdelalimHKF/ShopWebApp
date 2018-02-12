@@ -20,8 +20,6 @@ export class NearbyShopsComponent implements OnInit {
   nearByshops : NearByshops; //{averagdist ,content} || {averagdist,{shop,distance}}
   nbshops : Content[];// [{shop,distance},{}...]
   listNbShop : Shop[]=[];
-  //nbShopsExcludeLikedOnes : Shop[]=[];
-
   url ='http://localhost:8080/nearbyShops';
 
   getNearbyShops() : void {
@@ -29,31 +27,21 @@ export class NearbyShopsComponent implements OnInit {
       .map(resp => resp).subscribe(data => {
         this.nearByshops = data;
         this.nbshops=this.nearByshops.content;
-        console.log(this.nearByshops);
-        console.log(data);
-        console.log("nbshops",this.nbshops);
-        console.log("preferred shops",this.userService.authenticatedUser.preferredShops);
         this.displayNearByShops();
-        console.log("listNbShop listNbShop After displayNearByShops()", this.listNbShop);
       });
   }
 
   index :number;
   i : number;
-
   displayNearByShops(){
     this.shopService.nbShopsExcludeLikedOnes=[];
-
     for(this.i=0;this.i<this.nbshops.length;this.i++){
-
       this.index= this.myfindIndex(this.nbshops[this.i].content ,
         this.userService.authenticatedUser.preferredShops )
-      if(this.index < 0){// the near by shop doesn't exist in the preferred shops
-      //this.nbShopsExcludeLikedOnes.push(this.nbshops[this.i].content);
+      if(this.index < 0){// the nearbyshop doesn't exist in the preferred shops
       this.shopService.nbShopsExcludeLikedOnes.push(this.nbshops[this.i].content);
       }
     }
-
   }
 
 
@@ -62,9 +50,6 @@ export class NearbyShopsComponent implements OnInit {
       .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
             && obj.id.processIdentifier === shop.id.processIdentifier);
   }
-
-  
-
 
   ngOnInit() {
     this.getNearbyShops();

@@ -11,7 +11,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const appRoutes: Routes =[
   { path:'welcome', component: WelcomeComponent },
   { path:'dashboard', component: DashboardComponent },
-  { path : '' ,redirectTo : '/welcome' , pathMatch: 'full'}
+  { path : '' , redirectTo : '/welcome' , pathMatch: 'full'}
 ];
 
 

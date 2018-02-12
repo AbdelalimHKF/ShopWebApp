@@ -14,17 +14,8 @@ export class PreferredShopsComponent implements OnInit {
   preferredShops: Shop[];
 
   getPreferredShops(): void {
-    this.preferredShops = this.userService.getUPreferredShops();
+    this.preferredShops = this.userService.getPreferredShops();
   }
-/*
-  getPreferredShops() : void {
-
-    this.http.get<Shop[]>(this.url)
-      .map(data => data).subscribe(data => {
-        this.preferredShops =data;
-        console.log(data);
-      });
-  }*/
   ngOnInit() {
     this.getPreferredShops();
   }
