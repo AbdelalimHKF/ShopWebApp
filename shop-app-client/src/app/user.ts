@@ -1,4 +1,5 @@
 import { Id, Shop } from "./shop";
+import { DislikedShop } from "./dislikedShop";
 
 export class User {
     id : Id; 
@@ -6,4 +7,5 @@ export class User {
     email :String;
     passwd : String;
     preferredShops : Shop[];
+    dislikedShops : DislikedShop[];
  }

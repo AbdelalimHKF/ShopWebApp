@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.ah.shop.shopappserver.shops.DislikedShop;
 import com.ah.shop.shopappserver.shops.Shop;
 
 @Document(collection = "users")
@@ -17,6 +18,9 @@ public class User {
     private String userName;
     private String email ;
     private String passwd ;
+    private List<Shop> preferredShops;
+	private List<DislikedShop> dislikedShops;
+    
     public String getPasswd() {
 		return passwd;
 	}
@@ -25,29 +29,31 @@ public class User {
 		this.passwd = passwd;
 	}
 
-	private List<Shop> preferredShops;
     
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String userName, String email, String passwd,  List<Shop> preferredShops) {
+	public User( String userName, String email, String passwd, 
+			List<Shop> preferredShops, List<DislikedShop> dislikedShops) {
 		super();
 	
 		this.userName = userName;
 		this.email = email;
 		this.passwd = passwd;
 		this.preferredShops = preferredShops;
+		this.dislikedShops = dislikedShops;
 	}
 
 	
 
-	public User(String email, String passwd, List<Shop> preferredShops) {
+	public User(String email, String passwd, List<Shop> preferredShops, List<DislikedShop> dislikedShops) {
 		super();
 		this.email = email;
 		this.passwd = passwd;
 		this.preferredShops = preferredShops;
+		this.dislikedShops = dislikedShops;
 	}
 
 	public ObjectId getId() {
@@ -81,6 +87,15 @@ public class User {
 	public void setPreferredShops(List<Shop> preferredShops) {
 		this.preferredShops = preferredShops;
 	}
+
+	public List<DislikedShop> getDislikedShops() {
+		return dislikedShops;
+	}
+
+	public void setDislikedShops(List<DislikedShop> dislikedShops) {
+		this.dislikedShops = dislikedShops;
+	}
+	
 	
 	
     

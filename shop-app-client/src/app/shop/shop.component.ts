@@ -3,6 +3,7 @@ import { Content } from '../nearby-shops/nearByShops';
 import { Shop } from '../shop';
 import { ShopService } from '../shop.service';
 import { UserService } from '../user.service';
+import { DislikedShop } from '../dislikedShop';
 
 @Component({
   selector: 'app-shop',
@@ -33,10 +34,16 @@ export class ShopComponent implements OnInit {
 
   }
   dislike(shop : Shop){
-    this.shopService.deleteShop(shop,this.userService.authenticatedUser.preferredShops);
+    let dislikedShop : DislikedShop;
+    dislikedShop = new DislikedShop(new Date(),shop);
+    this.shopService.deleteShop(shop,this.shopService.nbShopsExcludeLikedOnes);
+    //this.shopService.deleteShop(dislikedShop.shop,this.userService.authenticatedUser.preferredShops);
+    this.shopService.addDislikedShop(dislikedShop , this.userService.authenticatedUser.dislikedShops);
     this.shopService.dislike(this.userService.authenticatedUser);
-    console.log("after remove",
+    console.log("after remove preferredShops ",
       this.userService.authenticatedUser.preferredShops);
+      console.log("after dislikedshops",
+      this.userService.authenticatedUser.dislikedShops);
   }
 
   i : number;

@@ -2,7 +2,6 @@ package com.ah.shop.shopappserver.user;
 
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ah.shop.shopappserver.shops.DislikedShop;
 import com.ah.shop.shopappserver.shops.Shop;
 
 @CrossOrigin(origins = "*")
@@ -38,7 +38,8 @@ public class UserRecources {
 	@RequestMapping(method=RequestMethod.POST, value="/register")
 	public User addUser(@RequestBody Form form){
 		
-		User user = new User(form.getEmail(), form.getPassWd(), new ArrayList<Shop>());
+		User user = new User(form.getEmail(), form.getPassWd(),
+				new ArrayList<Shop>(), new ArrayList<DislikedShop>());
 		user = userRepository.save(user);
 		return user;
 		}
