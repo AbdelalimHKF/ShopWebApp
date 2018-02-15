@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Shop } from './shop';
 import { User } from './user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
 import { DislikedShop } from './dislikedShop';
+import { NearByshops } from './nearby-shops/nearByShops';
+import { Observable } from 'rxjs/Observable';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+
 
 @Injectable()
 export class ShopService {
   uri = "http://localhost:8080/updateUser";
   nbShopsExcludeLikedOnes : Shop[]=[];
+  
 
-  constructor(private http : HttpClient,private userService : UserService ) { }
+  constructor(private http : HttpClient,
+              private userService : UserService ) { }
   
   like(user : User){
     console.log("user with liked shop from service ",user);
@@ -32,9 +45,21 @@ export class ShopService {
       console.log( "updated user",data);
     }); 
   }
+  
+  getNearbyShops(url : string ) : Observable<NearByshops>{
+    
+         let coordinate = {
+          "longitude": this.userService.coordinate.longitude,
+          "latitude": this.userService.coordinate.latitude
+        }
+      
+      return this.http.post<NearByshops>( url , coordinate);
+
+  }     
+   
+  
 
   index : number;
-
   deleteShop(shop : Shop , shops : Shop[]){
     console.log("deleteShop Called : preferredShops",shops);
     this.index = shops
@@ -75,6 +100,10 @@ export class ShopService {
     }
     return false;
   }
+
+
+  
+  
 
   isExistOld(shop : Shop , shops : Shop[]) :boolean{
     if(this.userService.authenticatedUser.preferredShops

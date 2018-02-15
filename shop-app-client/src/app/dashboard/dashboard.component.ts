@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService : UserService) { }
 
   nearbyShopsShowed : Boolean = false;
   preferredShopsShowed : Boolean = false;
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit {
     this.nearbyShopsShowed =false;
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.userService.getLocation();
   }
 
 }

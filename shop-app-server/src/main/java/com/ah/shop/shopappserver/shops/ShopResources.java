@@ -8,12 +8,17 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.client.model.geojson.Position;
 
 
 
+@CrossOrigin(origins = "*")
 @RestController
 public class ShopResources {
 	@Autowired
@@ -26,11 +31,10 @@ public class ShopResources {
 		 
 	 }
 	
-	@RequestMapping("/nearbyShops")
-	 public GeoResults<Shop> getNearShops(){
-		
-	
-		Point p = new Point(-6.81134,33.95564);
+	@RequestMapping(method=RequestMethod.POST, value="/nearbyShops")
+	 public GeoResults<Shop> getNearShops(@RequestBody Coordinate coordinate){
+				
+		Point p = new Point(coordinate.longitude,coordinate.latitude);
 		Distance d = new Distance(1.4, Metrics.KILOMETERS);
 		return shopRepository.findByLocationNear(p, d);
 		 

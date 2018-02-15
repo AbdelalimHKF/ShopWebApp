@@ -77,6 +77,23 @@ export class UserService {
     });
   }
 
+  coordinate={
+    "latitude": 0,
+    "longitude": 0
+  } ;
+  getLocation(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(p =>{
+       this.coordinate = {
+        "longitude": p.coords.longitude,
+        "latitude": p.coords.latitude
+      }
+    });
+    } else { 
+    console.log("can't find location");
+    } 
+   }
+
 
   
 

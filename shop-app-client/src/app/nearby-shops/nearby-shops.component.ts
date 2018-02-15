@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Shop } from '../shop';
 import { NearByshops, Content } from './nearByShops';
 import 'rxjs/add/operator/map';
 import { UserService } from '../user.service';
 import { ShopService } from '../shop.service';
 import { DislikedShop } from '../dislikedShop';
-import { forEach } from '@angular/router/src/utils/collection';
+
 
 @Component({
   selector: 'app-nearby-shops',
@@ -23,14 +23,24 @@ export class NearbyShopsComponent implements OnInit {
   nbshops : Content[];// [{shop,distance},{}...]
   listNbShop : Shop[]=[];
   url ='http://localhost:8080/nearbyShops';
+  
+  getNearbyShopsOld() : void {
 
-  getNearbyShops() : void {
     this.http.get<NearByshops>(this.url)
       .map(resp => resp).subscribe(data => {
         this.nearByshops = data;
         this.nbshops=this.nearByshops.content;
         this.displayNearByShops();
       });
+  }
+
+
+  getNearbyShops() : void {
+      this.shopService.getNearbyShops(this.url).subscribe(data => {
+      this.nearByshops = data;
+      this.nbshops=this.nearByshops.content;
+      this.displayNearByShops();
+    });
   }
 
   index :number;
@@ -109,6 +119,7 @@ export class NearbyShopsComponent implements OnInit {
       dislikedShops.splice(index, 1);
       
   }
+
 
 
   ngOnInit() {
