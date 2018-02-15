@@ -1,6 +1,5 @@
 package com.ah.shop.shopappserver.shops;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mongodb.client.model.geojson.Position;
-
 
 
 @CrossOrigin(origins = "*")
@@ -40,16 +36,5 @@ public class ShopResources {
 		 
 	 }
 	
-	@RequestMapping("/preferredShopsOld")
-	 public List<Shop> getPreferredShops() {
-		 
-		List<Shop> preferredShops = new ArrayList<Shop>();
-		
-		preferredShops.add(shopRepository.findByName("Gushkool"));
-		preferredShops.add(shopRepository.findByName("Datagene"));
-		
-		
-		return preferredShops;
-	 }
 	 
 }

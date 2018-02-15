@@ -16,6 +16,10 @@ export class WelcomeComponent implements OnInit {
     this.sigupClicked=true;
     this.authFormShowed = false;
   }
+  signIn(){
+    this.sigupClicked=false;
+    this.authFormShowed = true;
+  }
   ngOnInit() {
   }
 

@@ -19,7 +19,6 @@ export class PreferredShopComponent implements OnInit {
   remove(shop : Shop){
     this.shopService.deleteShop(shop,this.userService.authenticatedUser.preferredShops);
     this.shopService.remove(this.userService.authenticatedUser);
-    console.log("Removed shop",shop);
   }
   ngOnInit() {
   }

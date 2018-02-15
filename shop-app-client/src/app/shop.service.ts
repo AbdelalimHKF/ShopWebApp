@@ -21,7 +21,6 @@ export class ShopService {
   uri = "http://localhost:8080/updateUser";
   nbShopsExcludeLikedOnes : Shop[]=[];
   
-
   constructor(private http : HttpClient,
               private userService : UserService ) { }
   
@@ -37,7 +36,6 @@ export class ShopService {
     this.http.put(this.uri,user).map( data => data).subscribe(data =>{
       console.log( "respons",data);
     });
-    
   }
 
   remove(user : User){
@@ -54,10 +52,8 @@ export class ShopService {
         }
       
       return this.http.post<NearByshops>( url , coordinate);
-
   }     
    
-  
 
   index : number;
   deleteShop(shop : Shop , shops : Shop[]){
@@ -100,19 +96,5 @@ export class ShopService {
     }
     return false;
   }
-
-
-  
-  
-
-  isExistOld(shop : Shop , shops : Shop[]) :boolean{
-    if(this.userService.authenticatedUser.preferredShops
-      .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
-            && obj.id.processIdentifier === shop.id.processIdentifier)>=0){
-        return true;
-    }
-    return false;
-  }
-  
 
 }

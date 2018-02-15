@@ -55,31 +55,17 @@ export class NearbyShopsComponent implements OnInit {
       //hasn't to be in the disliked shops list && disliked.date > 2 hours 
       // to be added in nbShopsExcludeLikedOnes
       this.index2= this.myfindIndexDS(this.nbshops[this.i].content ,
-        this.userService.authenticatedUser.dislikedShops)
-        if(this.index2 > -1){
-          // shop exist in the dislikes shops so it won't be diplayed in the nearbyshops
-          //if the time witch is disliked in < than 2 hours (7200000ms) || 1 min (60000ms) for testing
-          // 
-          console.log(this.userService.authenticatedUser
-            .dislikedShops[this.index2].shop.name,"should be displayed? :","***",
-          new Date().getTime() - new Date(this.userService.authenticatedUser
-            .dislikedShops[this.index2].date).getTime() > 60000);
-
-          console.log(this.userService.authenticatedUser
-            .dislikedShops[this.index2].shop.name,"will be displayed in",
-            new Date(new Date(this.userService.authenticatedUser
-            .dislikedShops[this.index2].date).getTime()+60000)) ;
-         
-
-            this.displayShop=(new Date().getTime() - new Date(this.userService.authenticatedUser
-            .dislikedShops[this.index2].date).getTime() > 60000);
-            console.log("displayShop",this.displayShop);
+      this.userService.authenticatedUser.dislikedShops)
+      if(this.index2 > -1){
+        // shop exist in the dislikes shops so it won't be diplayed in the nearbyshops
+        //if the time witch is disliked in < than 2 hours (7200000ms) || 1 min (60000ms) for testing
+          this.displayShop=(new Date().getTime() - new Date(this.userService.authenticatedUser
+          .dislikedShops[this.index2].date).getTime() > 60000);
 
             if(this.displayShop){
               //delete disliked shop form dislikedshops list after 2hours (1min) from the date witch the shop is disliked
               this.deleteDislikedShop(this.nbshops[this.i].content,this.userService.authenticatedUser
                 .dislikedShops);
-
             }
         }
 
@@ -111,16 +97,12 @@ export class NearbyShopsComponent implements OnInit {
   }
 
   deleteDislikedShop(shop : Shop , dislikedShops : DislikedShop[]){
-    console.log("deleteShop Called : dislikedShops",dislikedShops);
     let index = dislikedShops
     .findIndex(obj => obj.shop.id.timestamp === shop.id.timestamp 
       && obj.shop.id.processIdentifier === shop.id.processIdentifier
       && obj.shop.name === shop.name);
-      dislikedShops.splice(index, 1);
-      
+      dislikedShops.splice(index, 1);  
   }
-
-
 
   ngOnInit() {
     this.getNearbyShops();

@@ -42,8 +42,6 @@ export class RegistrationComponent implements OnInit {
     this.userService.registerService(this.form);   
   } 
 
-  
- 
   ngOnInit() {
   }
 

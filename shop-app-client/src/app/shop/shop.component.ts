@@ -24,7 +24,6 @@ export class ShopComponent implements OnInit {
   like(shop : Shop){
     //delete liked shop from nearbayshops
     this.shopService.deleteShop(shop,this.shopService.nbShopsExcludeLikedOnes);
-    console.log("shop to be likeed ",shop);
     //check if shop doesn't exist befor push
     if(this.isExist(shop)){
     }else{
@@ -40,15 +39,10 @@ export class ShopComponent implements OnInit {
     //this.shopService.deleteShop(dislikedShop.shop,this.userService.authenticatedUser.preferredShops);
     this.shopService.addDislikedShop(dislikedShop , this.userService.authenticatedUser.dislikedShops);
     this.shopService.dislike(this.userService.authenticatedUser);
-    console.log("after remove preferredShops ",
-      this.userService.authenticatedUser.preferredShops);
-      console.log("after dislikedshops",
-      this.userService.authenticatedUser.dislikedShops);
   }
 
   i : number;
   isExist(shop : Shop) :boolean{
-    console.log("length ",this.userService.authenticatedUser.preferredShops.length);
     if(this.userService.authenticatedUser.preferredShops.length > 0){
       if(this.userService.authenticatedUser.preferredShops
         .findIndex(obj => obj.id.timestamp === shop.id.timestamp 
