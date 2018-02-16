@@ -7,10 +7,11 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes =[
   { path:'welcome', component: WelcomeComponent },
-  { path:'dashboard', component: DashboardComponent },
+  { path:'dashboard', canActivate : [AuthGuard], component: DashboardComponent },
   { path : '' , redirectTo : '/welcome' , pathMatch: 'full'}
 ];
 

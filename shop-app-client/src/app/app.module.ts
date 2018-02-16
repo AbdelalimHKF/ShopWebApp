@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ShopService } from './shop.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { ShopService } from './shop.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService, ShopService],
+  providers: [UserService, ShopService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

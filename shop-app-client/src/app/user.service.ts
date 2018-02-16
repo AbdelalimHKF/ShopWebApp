@@ -19,7 +19,9 @@ const httpOptions = {
 export class UserService {
   
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(private http : HttpClient, private router : Router) {
+    this.isAuthenticated=false;
+   }
   uri ="http://localhost:8080/authentification/";
   regitUri ="http://localhost:8080/register/";
   url :any;
@@ -68,9 +70,6 @@ export class UserService {
     });
   }
 
-  
-
-
   coordinate={
     "latitude": 0,
     "longitude": 0
@@ -87,6 +86,13 @@ export class UserService {
     console.log("can't find location");
     } 
    }
+
+   setIsAuthenticated( v : boolean ) : void {
+     this.isAuthenticated = v;
+   }
+   getIsAuthenticated() : boolean {
+    return this.isAuthenticated;
+  }
  
 }
 
