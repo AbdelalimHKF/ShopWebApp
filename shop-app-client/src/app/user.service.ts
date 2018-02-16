@@ -32,7 +32,6 @@ export class UserService {
 
   getPreferredShops(): Shop[] {
      if (this.authenticatedUser != null) {
-      console.log(this.authenticatedUser.preferredShops)
       return this.authenticatedUser.preferredShops;
      }
   }
@@ -43,45 +42,18 @@ export class UserService {
 
 
  register(form : Form) : Observable<User> {
-  console.log("register service called");
-  console.log(form);
    return this.http.post<User>("http://localhost:8080/register", form, httpOptions);
 }
-  registerOLD(form : Form) : void {
-    console.log("register service called");
-    console.log(form);
-      this.http.post<User>("http://localhost:8080/register", form, httpOptions)
-      .map(data => data).subscribe(data => {
-        if(data){
-          console.log("added User",data);
-          this.router.navigate(['']);
-        }
-      });
-    
-  }
 
-  postForm(form : any){
-    console.log("postForm called");
-    console.log(form);
-    return this.http.post("http://localhost:8080/form",form).map(data =>data)
-    .subscribe(data  =>  {
-      this.resForm = data;
-      console.log(this.resForm );
-    });
-  }
-
-  coordinate={
-    "latitude": 0,
-    "longitude": 0
-  } ;
+  coordinate={ "latitude": 0,"longitude": 0} ;
   getLocation(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(p =>{
        this.coordinate = {
         "longitude": p.coords.longitude,
         "latitude": p.coords.latitude
-      }
-    });
+        }
+      });
     } else { 
     console.log("can't find location");
     } 

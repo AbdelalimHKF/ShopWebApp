@@ -1,16 +1,10 @@
-<p>nearby-shopse works!</p>
+
 <div  *ngIf = "nearByshops">
-  <div>distance: {{nearByshops.averageDistance.value}} </div>
+  <div>Average distance: {{nearByshops.averageDistance.value}} </div>
   <div>
     <ul>
         <li *ngFor ="let nbshop of shopService.nbShopsExcludeLikedOnes">
-            
            <app-shop [nbshop]="nbshop"></app-shop> 
-         
-      <!--<li *ngFor ="let nbshop of nbshops">
-         {shop componemt} 
-        <app-shop [nbshop]="nbshop"></app-shop> 
-      </li> -->
         <div></div>
     </ul>
   </div>
