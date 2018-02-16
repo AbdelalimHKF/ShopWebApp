@@ -1,4 +1,4 @@
-<div> 
+<div *ngIf="displayForm"> 
     <p> registration works! </p>
     <div>
         <label>E-mail :</label>
@@ -14,4 +14,9 @@
     </div>
   <button (click)="register(email.value, passWd.value)">Submit</button>
   <p>{{match_pw_message}}</p>
+</div>
+<div *ngIf="isUserAdded">
+    <p>
+        user added successfully click signIn button 
+    </p>
 </div>

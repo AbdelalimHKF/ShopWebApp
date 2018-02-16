@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../user';
 import { Observable } from 'rxjs/Observable';
 import { Form } from '../form';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,10 +21,13 @@ export class RegistrationComponent implements OnInit {
   regitUri ="http://localhost:8080/register/";
 
   constructor(private userService : UserService,
-              private http :HttpClient) { }
+              private http :HttpClient,
+              private router : Router) { }
 
   passwd :String;
   match_pw_message = "";
+  displayForm = true ;
+  isUserAdded = false;
   form : Form = new Form("","");
 
   onKey1(passwd : String ){
@@ -39,7 +43,14 @@ export class RegistrationComponent implements OnInit {
 
   register(email : String, passWd : String) {
     this.form.email=email; this.form.passWd=passWd;
-    this.userService.registerService(this.form);   
+    this.userService.register(this.form).map(data => data).subscribe(data => {
+      if(data){
+        console.log("added User",data);
+        this.isUserAdded=true;
+        this.displayForm=false;
+        //this.router.navigate(['']);
+      }
+    });   
   } 
 
   ngOnInit() {

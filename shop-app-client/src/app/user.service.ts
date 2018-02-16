@@ -19,14 +19,14 @@ const httpOptions = {
 export class UserService {
   
 
-  constructor(private http : HttpClient,private router : Router) { }
+  constructor(private http : HttpClient, private router : Router) { }
   uri ="http://localhost:8080/authentification/";
   regitUri ="http://localhost:8080/register/";
   url :any;
   authenticatedUser : User;
   message : String;
   resForm : any;
-  isAuthenticated : boolean = false;
+  isAuthenticated : boolean ;
 
   getPreferredShops(): Shop[] {
      if (this.authenticatedUser != null) {
@@ -35,14 +35,24 @@ export class UserService {
      }
   }
 
-  registerService(form : Form) : void {
+  login(form : any) : Observable<User> {
+    return this.http.post<User>("http://localhost:8080/authentification",form);
+ }
+
+
+ register(form : Form) : Observable<User> {
+  console.log("register service called");
+  console.log(form);
+   return this.http.post<User>("http://localhost:8080/register", form, httpOptions);
+}
+  registerOLD(form : Form) : void {
     console.log("register service called");
     console.log(form);
       this.http.post<User>("http://localhost:8080/register", form, httpOptions)
       .map(data => data).subscribe(data => {
         if(data){
           console.log("added User",data);
-          this.router.navigate(['welcome']);
+          this.router.navigate(['']);
         }
       });
     
@@ -58,24 +68,8 @@ export class UserService {
     });
   }
 
-  login(form : any) : any {
-    console.log("postFormLogin called");
-    console.log(form);
-    return this.http.post<User>("http://localhost:8080/authentification",form).map(data =>data)
-    .subscribe(data  =>  {
-      console.log("data : ",data);
-      if(data==null){
-        this.isAuthenticated=false;
-        this.message="uncorrect email or password";
-        console.log("from service", this.message);
-      }else{
-        this.isAuthenticated=true;
-        this.authenticatedUser = data;
-        this.router.navigate(['dashboard']);
-      }
-      
-    });
-  }
+  
+
 
   coordinate={
     "latitude": 0,
