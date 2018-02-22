@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import { ReactiveFormsModule} from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ReactiveFormsModule} from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   providers: [UserService, ShopService,AuthGuard],
   bootstrap: [AppComponent]
