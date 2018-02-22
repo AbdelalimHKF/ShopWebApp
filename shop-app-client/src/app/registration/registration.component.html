@@ -1,21 +1,29 @@
-<div *ngIf="displayForm"> 
-    <div>
-        <label>E-mail :</label>
-        <input #email >
-    </div>
-    <div>
-        <label>Password :</label>
-        <input #passWd (keyup)=onKey1(passWd.value)>
-    </div>
-    <div>
-        <label>re-enter the Password :</label>
-        <input #box (keyup)="onKey2(box.value)">
-    </div>
-  <button (click)="register(email.value, passWd.value)">Submit</button>
-  <p>{{match_pw_message}}</p>
-</div>
-<div *ngIf="isUserAdded">
+<mat-card *ngIf="displayForm" class="example-container"> 
+    <mat-form-field>
+        <input matInput placeholder="Enter your email" [formControl]="email" required >
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" 
+        (keyup)="onKey()" [formControl]="passwd" required >
+        <mat-error *ngIf="passwd.invalid">{{getErrorPasswdMessage()}}</mat-error>  
+        <!--  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        -->
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Re-Enter your password" [type]="hide ? 'password' : 'text'" 
+        (keyup)="onKey2()" [formControl]="re_entred_passwd" required >
+        <mat-hint *ngIf="passwdMatchs">Passwds dosen't match!</mat-hint>
+        <mat-error *ngIf="re_entred_passwd.invalid">{{getErrorPasswd2Message()}}</mat-error>  
+        <!--  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        -->
+    </mat-form-field>
+ 
+  <button [disabled]="btnDisabled" mat-button (click)="register()">Submit</button>
+</mat-card>
+<mat-card *ngIf="isUserAdded">
     <p>
         user added successfully  <a href="/">Sign in</a> 
     </p>
-</div>
+</mat-card>

@@ -6,6 +6,7 @@ import { User } from '../user';
 import { Observable } from 'rxjs/Observable';
 import { Form } from '../form';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,31 +25,60 @@ export class RegistrationComponent implements OnInit {
               private http :HttpClient,
               private router : Router) { }
 
-  passwd :String;
-  match_pw_message = "";
+  match_pw_message = "Re-Enter your password";
   displayForm = true ;
   isUserAdded = false;
   form : Form = new Form("","");
 
-  onKey1(passwd : String ){
-    this.passwd = passwd;
+  hide = true;
+  email : FormControl = new FormControl('', [Validators.required, Validators.email]);
+  passwd : FormControl = new FormControl('', Validators.required);
+  re_entred_passwd : FormControl = new FormControl('', Validators.required);
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+        this.email.hasError('email') ? 'Not a valid email' :
+            '';
   }
-  onKey2(re_entred_passwd : String ){
-   if(re_entred_passwd != this.passwd){
-    this.match_pw_message = "Passwds dosen't match";
-   }else{
-    this.match_pw_message="";
-   }
+  getErrorPasswdMessage() {
+    return  this.passwd.hasError('required') ? 'You must enter a password' :
+            '';
   }
 
-  register(email : String, passWd : String) {
-    this.form.email=email; this.form.passWd=passWd;
+  getErrorPasswd2Message() {
+    return  this.re_entred_passwd.hasError('required') ? 'You must re-enter the password' :
+            '';
+  }
+
+  btnDisabled : boolean = true;
+  onKey(){
+    this.getError();
+  }
+  onKey2(){
+    this.getError();
+    this.isPasswdMatchs();
+  }
+  getError() {
+    return  this.email.hasError('required') ?  this.btnDisabled=true:
+      this.passwd.hasError('required') ?  this.btnDisabled=true:
+      this.re_entred_passwd.hasError('required') ?  this.btnDisabled=true:
+      this.email.hasError('email') ?  this.btnDisabled=true :
+      this.re_entred_passwd.value !=this.passwd.value ? this.btnDisabled=true:
+      this.btnDisabled=false;
+  }
+
+  passwdMatchs : boolean;
+  isPasswdMatchs(){
+   this.passwdMatchs = this.re_entred_passwd.value != this.passwd.value ;
+  }
+
+  register() {
+    this.form.email=this.email.value; this.form.passWd=this.passwd.value;
     this.userService.register(this.form).map(data => data).subscribe(data => {
       if(data){
         console.log("added User",data);
         this.isUserAdded=true;
         this.displayForm=false;
-        //this.router.navigate(['']);
       }
     });   
   } 
