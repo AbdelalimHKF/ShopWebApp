@@ -1,10 +1,10 @@
-<div *ngIf="nbshop">
-  <div>name : {{nbshop.name}}</div>
-  <div>
-      <img src="{{nbshop.picture}}">
-  </div>
-  <div>
-    <button (click)="like(nbshop)">like</button>
-    <button (click)="dislike(nbshop)">dislike</button>
-  </div>
-</div>
+<mat-card *ngIf="nbshop">
+    <mat-card-header>
+        <mat-card-title>{{nbshop.name}}</mat-card-title>
+    </mat-card-header>
+        <img mat-card-image src="{{nbshop.picture}}">
+    <mat-card-actions>
+        <button class="like" mat-button (click)="like(nbshop)">Like</button>
+        <button class="dislike" mat-button (click)="dislike(nbshop)">Dislike</button>
+    </mat-card-actions>
+</mat-card>

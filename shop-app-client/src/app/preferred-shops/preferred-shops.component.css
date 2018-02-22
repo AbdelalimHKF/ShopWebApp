@@ -1,0 +1,8 @@
+ul#listpfs li{
+    display: inline;
+    padding : 10px;
+}
+
+li{
+    float: left;
+}

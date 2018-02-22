@@ -1,10 +1,13 @@
-<div *ngIf="preferredShop"> 
-  <div>name : {{preferredShop.name}}</div>
-  <div>
-      <img src="{{preferredShop.picture}}">
-  </div>
-  <div>
-    <button (click)="remove(preferredShop)">Remove</button>
-  </div>
-</div>
+<mat-card *ngIf="preferredShop">
+    <mat-card-header>
+        <mat-card-title>{{preferredShop.name}}</mat-card-title>
+    </mat-card-header>
+    
+        <img mat-card-image src="{{preferredShop.picture}}">
+
+    <mat-card-actions>
+        <button class="remove" mat-button (click)="remove(preferredShop)">Remove</button>
+    </mat-card-actions>
+</mat-card>
+
 

@@ -30,7 +30,8 @@ public class ShopResources {
 	@RequestMapping(method=RequestMethod.POST, value="/nearbyShops")
 	 public GeoResults<Shop> getNearShops(@RequestBody Coordinate coordinate){
 				
-		Point p = new Point(coordinate.longitude,coordinate.latitude);
+		//Point p = new Point(coordinate.longitude,coordinate.latitude);
+		Point p = new Point(-6.81134,33.95564);
 		Distance d = new Distance(1.4, Metrics.KILOMETERS);
 		return shopRepository.findByLocationNear(p, d);
 		 

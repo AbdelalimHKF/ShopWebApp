@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { ShopComponent } from './shop/shop.component';
@@ -16,6 +15,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ShopService } from './shop.service';
 import { AuthGuard } from './auth.guard';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +39,13 @@ import { AuthGuard } from './auth.guard';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, ShopService,AuthGuard],
   bootstrap: [AppComponent]
