@@ -12,7 +12,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="Re-Enter your password" [type]="hide ? 'password' : 'text'" 
+        <input matInput placeholder="Reenter your password" [type]="hide ? 'password' : 'text'" 
         (keyup)="onKey2()" [formControl]="re_entred_passwd" required >
         <mat-hint *ngIf="passwdMatchs">Passwds dosen't match!</mat-hint>
         <mat-error *ngIf="re_entred_passwd.invalid">{{getErrorPasswd2Message()}}</mat-error>  

@@ -1,5 +1,4 @@
   <div *ngIf = "nearByshops">
-    <div>Average distance: {{nearByshops.averageDistance.value}} </div>
     <div>
       <ul id="list">
           <li  *ngFor ="let nbshop of shopService.nbShopsExcludeLikedOnes">

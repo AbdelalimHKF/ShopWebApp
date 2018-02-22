@@ -9,17 +9,6 @@ export class WelcomeComponent implements OnInit {
 
   constructor() { }
 
-  authFormShowed : boolean = true;
-  sigupClicked : boolean = false;
-
-  signUp(){
-    this.sigupClicked=true;
-    this.authFormShowed = false;
-  }
-  signIn(){
-    this.sigupClicked=false;
-    this.authFormShowed = true;
-  }
   ngOnInit() {
   }
 

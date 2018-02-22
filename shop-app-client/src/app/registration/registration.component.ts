@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getErrorPasswd2Message() {
-    return  this.re_entred_passwd.hasError('required') ? 'You must re-enter the password' :
+    return  this.re_entred_passwd.hasError('required') ? 'You must reenter the password' :
             '';
   }
 
