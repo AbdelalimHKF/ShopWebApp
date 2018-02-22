@@ -1,7 +1,9 @@
 <div>
-  <nav class="nav">
-      <button class="left" (click)="showNearbyShops()" >Nearby Shops</button>
-      <button class="left" href="#" (click)="showPreferredShops()">Preferred Shops</button>
+  <nav class="right">
+    <p>
+      <button  (click)="showNearbyShops()" >Nearby Shops</button>
+      <button  href="#" (click)="showPreferredShops()">Preferred Shops</button>
+    </p>
   </nav>
   <div>
     <div *ngIf = "nearbyShopsShowed">
