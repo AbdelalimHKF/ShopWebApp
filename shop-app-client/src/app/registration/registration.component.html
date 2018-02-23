@@ -1,6 +1,7 @@
 <mat-card *ngIf="displayForm" class="example-container"> 
     <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email" required >
+        <input  matInput placeholder="Enter your email" [formControl]="email" required 
+        (keyup)="onKey()">
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -14,7 +15,7 @@
     <mat-form-field>
         <input matInput placeholder="Reenter your password" [type]="hide ? 'password' : 'text'" 
         (keyup)="onKey2()" [formControl]="re_entred_passwd" required >
-        <mat-hint *ngIf="passwdMatchs">Passwds dosen't match!</mat-hint>
+        <mat-hint *ngIf="passwdMatchs">Passwords don't match!</mat-hint>
         <mat-error *ngIf="re_entred_passwd.invalid">{{getErrorPasswd2Message()}}</mat-error>  
         <!--  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         -->
