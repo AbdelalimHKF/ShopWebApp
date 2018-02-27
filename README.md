@@ -3,7 +3,7 @@
 > web app to find and diplay nearby shops
 
 
-This web application help its users to find and show nearby shops, by taking the current position of its users and displaying all the shops arround sorted by ditance.
+This web application help its users to find and show nearby shops, by taking the current location of its users and displaying all the shops arround sorted by distance.
 
 ![ShopWebApp Preview](img.PNG)
 
