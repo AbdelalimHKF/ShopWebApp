@@ -51,6 +51,6 @@ After you clone this repo to your desktop import shop-app-server folder in you p
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
-#### Development server
+####  Run the client app in development mode 
 
  In the terminal, navigate to shop-app-client folder, run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
