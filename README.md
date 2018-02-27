@@ -34,7 +34,7 @@ A MongoDB dump with ~300 shops is provided. To import the data, you need to extr
 
 create a 2dsphere index 
 
-`> db.places.createIndex( { location : "2dsphere" } )`
+`> db.shops.createIndex( { location : "2dsphere" } )`
 
 
 →→ A shop database will be created with a shops collection.
