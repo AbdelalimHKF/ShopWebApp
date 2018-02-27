@@ -22,8 +22,8 @@ export class UserService {
   constructor(private http : HttpClient, private router : Router) {
     this.isAuthenticated=false;
    }
-  uri ="http://localhost:8080/authentification/";
-  regitUri ="http://localhost:8080/register/";
+  uri ="http://localhost:8080/authentication";
+  regitUri ="http://localhost:8080/register";
   url :any;
   authenticatedUser : User;
   message : String;
@@ -37,12 +37,12 @@ export class UserService {
   }
 
   login(form : any) : Observable<User> {
-    return this.http.post<User>("http://localhost:8080/authentification",form);
+    return this.http.post<User>(this.uri,form);
  }
 
 
  register(form : Form) : Observable<User> {
-   return this.http.post<User>("http://localhost:8080/register", form, httpOptions);
+   return this.http.post<User>(this.regitUri, form, httpOptions);
 }
 
   coordinate={ "latitude": 0,"longitude": 0} ;

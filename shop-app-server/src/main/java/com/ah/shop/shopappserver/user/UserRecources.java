@@ -20,7 +20,7 @@ public class UserRecources {
 	private UserRepository userRepository;
 	
 	
-	@RequestMapping(method=RequestMethod.POST, value="/authentification")
+	@RequestMapping(method=RequestMethod.POST, value="/authentication")
 	public User getAuthUser(@RequestBody Form form){
 
 		User user = userRepository.findByEmail(form.email);
@@ -38,7 +38,7 @@ public class UserRecources {
 	@RequestMapping(method=RequestMethod.POST, value="/register")
 	public User addUser(@RequestBody Form form){
 		
-		User user = new User(form.getEmail(), form.getPassWd(),
+		User user = new User(form.getEmail(), form.getPassWd(),	
 				new ArrayList<Shop>(), new ArrayList<DislikedShop>());
 		user = userRepository.save(user);
 		return user;

@@ -50,7 +50,7 @@ export class AuthentificationComponent implements OnInit {
     this.userService.login(this.form).map(data => data).subscribe(data  =>  {
       if(data==null){
         this.userService.isAuthenticated=false;
-        this.message="uncorrect email or password";       
+        this.message="incorrect email or password";       
       }else{
         this.userService.authenticatedUser = data;
         this.userService.isAuthenticated=true;
